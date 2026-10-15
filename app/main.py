@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from app.monitoring.system import get_system_info
+from app.monitoring.cpu import get_cpu_metrics
+from app.monitoring.memory import get_memory_metrics
+from app.monitoring.disk import get_disk_metrics
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def collect_metrics() -> dict:
+    """
+    Collect all system metrics.
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    Returns:
+        dict: Current system metrics.
+    """
+
+    return {
+        "system": get_system_info(),
+        "cpu": get_cpu_metrics(),
+        "memory": get_memory_metrics(),
+        "disk": get_disk_metrics(),
+    }
